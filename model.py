@@ -4,8 +4,8 @@ import layer
 
 class Model:
     def __init__(self, layer_sizes, input_size, activation):
-        layer_sizes.insert(0, input_size)
-        input_sizes = layer_sizes[:-1]
+        input_sizes = [input_size] + layer_sizes
+        input_sizes = input_sizes[:-1]
         self.layers = []
         self.vars = []
 
@@ -14,7 +14,6 @@ class Model:
                 activation = tf.sigmoid
             self.layers.append(layer.Layer(size, input_size, activation))
             self.vars += self.layers[-1].vars
-        print(self.vars)
 
     def __call__(self, features):
         # features.shape: [num_features, batch_size]
