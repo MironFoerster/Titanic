@@ -6,7 +6,7 @@ import data
 import matplotlib.pyplot as plt
 import os
 
-learning_rate = 0.1
+learning_rate = 0.01
 batch_size = 100
 num_epochs = 100
 
@@ -58,7 +58,7 @@ for e in range(num_epochs):
     epoch_neg = 0
     for features, y_true in test.batch(batch_size, drop_remainder=True):
         network_output = titanic_model(features)
-        y_pred = tf.map_fn(lambda x: 2 if x>=0.5 else 0, network_output)
+        y_pred = tf.map_fn(lambda x: 2 if x >= 0.5 else 0, network_output)
 
         s = y_pred + y_true
 
@@ -129,4 +129,17 @@ axs[1][1].legend()
 
 plt.savefig(os.path.join("plots", "plots.svg"))
 
+while True:
+    print("Enter features:")
+    features = {"age": tf.constant(float(input("Age:")), dtype=tf.float32),
+                "embarked": tf.constant(int(input("Embarked:")), dtype=tf.int64),
+                "fare": tf.constant(float(input("Fare:")), dtype=tf.float32),
+                "parch": tf.constant(float(input("Parch:")), dtype=tf.float32),
+                "pclass": tf.constant(int(input("Pclass:")), dtype=tf.int64),
+                "sex": tf.constant(float(input("Sex:")), dtype=tf.float32),
+                "sibsp": tf.constant(float(input("Sibsp:")), dtype=tf.float32)}
 
+    x = data.preprocess_features(features, tf.constant(0.))
+    print(x)
+    pred = titanic_model(tf.expand_dims(tf.concat(list(x[0]), axis=0), axis=1))
+    print(pred)
