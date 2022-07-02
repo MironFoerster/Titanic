@@ -20,4 +20,4 @@ class Model:
         for l in self.layers:
             features = l(features)
             # features.shape: [layer_size, batch_size]
-        return features
+        return tf.squeeze(features, axis=0)

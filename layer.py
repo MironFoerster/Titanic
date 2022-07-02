@@ -7,8 +7,8 @@ class Layer(tf.keras.layers.Layer):
         self.W_initializer = tf.keras.initializers.RandomNormal(mean=0., stddev=1.)
         self.b_initializer = tf.keras.initializers.Zeros()
 
-        self.W = self.W_initializer(shape=(size, input_size))
-        self.b = self.b_initializer(shape=(size, 1))
+        self.W = tf.Variable(self.W_initializer(shape=(size, input_size)), dtype=tf.float32)
+        self.b = tf.Variable(self.b_initializer(shape=(size, 1)), dtype=tf.float32)
         self.vars = [self.W, self.b]
 
     def __call__(self, inputs):

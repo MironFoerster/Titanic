@@ -6,7 +6,7 @@ class Loss:
         self.loss_name = loss_name
 
     def __call__(self, y_true, y_pred):
-        # y_true.shape = y_pred.shape = [batch_size, 1]
+        # y_true.shape = y_pred.shape = [batch_size, ]
         if self.loss_name == "mean_squared":
             diff = y_true - y_pred
             square = tf.square(diff)
