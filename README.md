@@ -1,17 +1,7 @@
 # Titanic
 This Repo is used for providing fellow students with a deep learning intro.
 
-![](img.png)
-https://medium.com/analytics-vidhya/calculating-accuracy-of-an-ml-model-8ae7894802e
+A Artificial Neural Network is built from ground up (except for the gradient calculations which are done with tf.GradientTape()) and trained on the titanic dataset, reaching an acurracy of about 80%.
 
-1 0 0 1
-1 0 1 0
-2 0 1 1
-
--10 0-1
-1 0 1 0
-0 0 1-1
-
-2 0 0 2
-1 0 1 0
-3 0 1 2
+Different metrics like loss, accuracy, true_pos etc that are calculated during training get plotted.
+After training a small command line interface allows to enter features of an imaginary person to find out if they would have survived the accident.
